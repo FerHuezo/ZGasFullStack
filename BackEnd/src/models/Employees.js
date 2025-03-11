@@ -48,7 +48,30 @@ const productsSchema = new Schema({
         type: String,
         required: true,
         minlength: 6, 
-      }
+    },
+    phoneNumber: {
+        type: String,
+        required: true,
+        match: [
+          /^[0-9]{8}$/,
+          "El teléfono debe contener exactamente 8 dígitos numéricos",
+        ],
+      },
+    dui: {
+        type: String,
+        default: null,
+        match: [/^[0-9]{8}-[0-9]{1}$/, "El formato del DUI debe ser 12345678-9"],
+    },
+    isssNumber : {
+        type : Number,
+        required : true,
+        min : 9
+    },
+    isVerified : {
+        type : Boolean,
+        default : false
+    }
+    
 
 }, {
     timestamps : true,
