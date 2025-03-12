@@ -1,31 +1,81 @@
-const productsController = {}
-import productsModel from "../models/Products.js";
+const employeesController = {};
+import employeeModel from "../models/Employees.js";
 
-productsController.getProducts = async (req, res) => {
-    const products = await productsModel.find()
-    res.json(products)
+employeesController.getEmployees = async (req, res) => {
+    try {
+        const employees = await employeeModel.find();
+        res.json(employees);
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error", error });
+    }
 };
 
-productsController.postProducts = async (req, res) => {
-    const {name, description, price, stock} = req.body
-    const newProduct = new productsModel({name, description, price, stock});
-    await newProduct.save();
-    res.json({message : "Product Saved :)"});
-}
+employeesController.postEmployee = async (req, res) => {
+    try {
+        const {
+            name,
+            lastName,
+            birthday,
+            email,
+            address,
+            hireDate,
+            password,
+            phoneNumber,
+            dui,
+            isssNumber,
+            isVerified
+        } = req.body;
 
-productsController.putProducts = async (req, res) => {
-    const {name, description, price, stock} = req.body;
-    const updatedProducts = await productsModel.findByIdAndUpdate(
-        req.params.id,
-        {name, description, price, stock},
-        {new : true}
-    );
-    res.json({message : "Product Updated :)"})
-}
+        const newEmployee = new employeeModel({
+            name,
+            lastName,
+            birthday,
+            email,
+            address,
+            hireDate,
+            password,
+            phoneNumber,
+            dui,
+            isssNumber,
+            isVerified
+        });
+        await newEmployee.save();
+        res.status(201).json({ message: "OK" });
+    } catch (error) {
+        res.status(400).json({ message: "Bad Request", error });
+    }
+};
 
-productsController.deleteProducts = async (req, res) =>{
-    await productsModel.findByIdAndDelete(req.params.id)
-    res.json({message : "Product Deleted :)"})
-}
+employeesController.putEmployee = async (req, res) => {
+    try {
+        const updatedEmployee = await employeeModel.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        );
 
-export default productsController
+        if (!updatedEmployee) {
+            return res.status(404).json({ message: "Not Found" });
+        }
+
+        res.json({ message: "OK", updatedEmployee });
+    } catch (error) {
+        res.status(400).json({ message: "Bad Request", error });
+    }
+};
+
+employeesController.deleteEmployee = async (req, res) => {
+    try {
+        const deletedEmployee = await employeeModel.findByIdAndDelete(req.params.id);
+
+        if (!deletedEmployee) {
+            return res.status(404).json({ message: "Not Found" });
+        }
+
+        res.json({ message: "OK" });
+    } catch (error) {
+        res.status(500).json({ message: "Bad Request", error });
+    }
+};
+
+export default employeesController;
