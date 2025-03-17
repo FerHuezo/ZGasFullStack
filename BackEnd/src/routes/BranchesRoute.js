@@ -1,5 +1,5 @@
 import express from "express";
-import branchesController from "../controllers/branchesController"
+import branchesController from "../controllers/branchesController.js"
 
 const router = express.Router();
 

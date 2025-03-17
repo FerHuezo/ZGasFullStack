@@ -10,7 +10,7 @@ employeesController.getEmployees = async (req, res) => {
     }
 };
 
-employeesController.postEmployee = async (req, res) => {
+employeesController.postEmployees = async (req, res) => {
     try {
         const {
             name,
@@ -46,7 +46,7 @@ employeesController.postEmployee = async (req, res) => {
     }
 };
 
-employeesController.putEmployee = async (req, res) => {
+employeesController.putEmployees = async (req, res) => {
     try {
         const updatedEmployee = await employeeModel.findByIdAndUpdate(
             req.params.id,
@@ -64,7 +64,7 @@ employeesController.putEmployee = async (req, res) => {
     }
 };
 
-employeesController.deleteEmployee = async (req, res) => {
+employeesController.deleteEmployees = async (req, res) => {
     try {
         const deletedEmployee = await employeeModel.findByIdAndDelete(req.params.id);
 

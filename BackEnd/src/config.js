@@ -1,4 +1,12 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
 export const config = {
-    PORT: 4000,
-    MONGO_URI:"mongodb://127.0.0.1:27017/ZGasDB"
-}
+    db : {
+        URI : process.env.URI
+    },
+    server : {
+        PORT : process.env.PORT
+    }
+};

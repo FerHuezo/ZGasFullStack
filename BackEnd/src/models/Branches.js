@@ -41,4 +41,4 @@ const brancheSchema = new Schema({
     strict: true
 });
 
-export default model("products", brancheSchema);
+export default model("branches", brancheSchema);

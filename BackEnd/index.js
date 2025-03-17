@@ -3,7 +3,7 @@ import "./database.js";
 import {config} from "./src/config.js";
 
 async function main() {
-    app.listen(config.PORT);
+    app.listen(config.server.PORT);
 }
 
 main();
