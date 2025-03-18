@@ -1,7 +1,6 @@
 const reviewsController = {};
 import reviewsModel from "../models/Reviews.js";
 
-// Obtener todos los productos
 reviewsController.getReviews = async (req, res) => {
     try {
         const reviews = await reviewsModel.find().populate("idClient");
@@ -11,7 +10,6 @@ reviewsController.getReviews = async (req, res) => {
     }
 };
 
-// Crear un nuevo producto
 reviewsController.postReviews = async (req, res) => {
     try {
         const { comment, rating, idClient } = req.body;
@@ -23,7 +21,6 @@ reviewsController.postReviews = async (req, res) => {
     }
 };
 
-// Actualizar un producto por ID
 reviewsController.putReviews = async (req, res) => {
     try {
         const { comment, rating, idClient } = req.body;
@@ -42,7 +39,6 @@ reviewsController.putReviews = async (req, res) => {
     }
 };
 
-// Eliminar un producto por ID
 reviewsController.deleteReviews = async (req, res) => {
     try {
         const deletedReview = await reviewsModel.findByIdAndDelete(req.params.id);
