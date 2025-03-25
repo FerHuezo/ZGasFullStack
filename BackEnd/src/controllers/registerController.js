@@ -40,8 +40,6 @@ registerController.postRegister = async (req, res) => {
                 isVerified
             });
             await newRegister.save();
-            res.status(200).json({ message: "OK" });
-
             jsonwebtoken.sign(
                 {id : newRegister._id},
                 config.JWT.secret,
@@ -49,6 +47,8 @@ registerController.postRegister = async (req, res) => {
                 (error, token) => {
                     if(error) console.log(error);
                     res.cookie("authToken",token);
+                    res.json({message : "Employee Registred"})
+                    res.status(200).json({ message: "OK" });
                 } 
             )
         } catch (error) {
