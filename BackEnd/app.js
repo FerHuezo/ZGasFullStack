@@ -9,6 +9,7 @@ import assessmentRoutes from "./src/routes/AssessmentsRoute.js"
 import registerRoutes from "./src/routes/registerRoute.js";
 import loginRoutes from "./src/routes/loginRoute.js"
 import logoutRoutes from "./src/routes/logoutRoute.js"
+import registerClientsRoutes from "./src/routes/registerClientsRoute.js";
 
 const app = express();
 
@@ -25,5 +26,7 @@ app.use("/api/assessment", assessmentRoutes)
 app.use("/api/register", registerRoutes)
 app.use("/api/login", loginRoutes)
 app.use("/api/logout", logoutRoutes)
+
+app.use("/api/registerClients", registerClientsRoutes)
  
 export default app;

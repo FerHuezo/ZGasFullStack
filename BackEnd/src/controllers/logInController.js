@@ -5,7 +5,6 @@ import jsonwebtoken from "jsonwebtoken";
 import { config } from "../config.js";
 
 const loginController = {}
-
 loginController.login = async (req, res) =>{
     const {email, password} = req.body;
 
